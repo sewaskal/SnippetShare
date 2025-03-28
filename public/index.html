@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat (SnippetShare)</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <button onclick="ToggleUserMenu()" style="position: absolute; top: 0; left: 0; z-index: 5;">&#9773;</button>
+        <section id="serverStatus">
+            <label for="username">Nazwa użytkownika</label>
+            <input type="text" id="username" placeholder="JanDupawski512" required value="Anonymous">
+            <p>&#169; Piotr Zbroiński 2025</p>
+        </section>
+    </header>
+
+    <section id="chat">
+        <!-- <div class="message">
+            <p id="header">dupa5<span>C#</span><button>Kopiuj</button><span class="time">00:00</span></p>
+            <p id="content"><code>#include &lt;iostream&gt;<br>#include &lt;cstdlib&gt;<br><br>using namespace std;<br><br>int main() <br> { <br><br>return 0;<br> }</code></p>
+        </div> -->
+    </section>
+
+    <section id="input">
+        <textarea id="userInput" placeholder="Write here..." rows="8" cols="30"></textarea> <br>
+        <button onclick="SendClientMessage()">Wyślij</button>
+        <button onclick="window.location.reload()">Odśwież stronę</button>
+
+    </section>
+
+    <footer>
+        <button onclick="Exit()">Wyjście</button>
+    </footer>
+
+    <!-- <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script> -->
+    <script src="socket.io.js"></script>
+    <script>
+        if (window.fs.existsSync("username.txt"))
+        {
+            document.getElementById('username').value = window.fs.readFileSync("username.txt", "utf-8");
+        }
+
+        document.getElementById('username').addEventListener('change', () => {
+            window.fs.writeFileSync("username.txt", document.getElementById('username').value);
+        });
+    </script>
+</body>
+</html>
